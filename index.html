@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemoWeb - Trang chủ</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">    
+   
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/assets/images/logo.jpg" alt="SneakerStore" class="logo-img">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Trang chủ</a></li>
+                <li><a href="pages/products.html">Sản phẩm</a></li>
+                <li><a href="pages/cart.html">Giỏ hàng</a></li>
+                <li><a href="pages/login.html">Đăng nhập</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <img src="/assets/images/banner.jpg" alt="Banner chính" class="banner-img">
+        <div class="banner-content">
+            <a href="products.html" class="btn-primary">Mua sắm ngay</a>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="product-grid" id="featured-products-container">
+        </div>
+        <div class="see-more">
+            <a href="products.html" class="btn-secondary">Xem tất cả sản phẩm →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DemoWeb</h3>
+                <p>Cửa hàng trực tuyến demo - xây dựng bởi Thanh Quang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: contact@demoweb.vn</p>
+                <p>Hotline: 0987 xxx xxx</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DemoWeb. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+</body>
+</html>

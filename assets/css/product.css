@@ -1,0 +1,232 @@
+/* ==========================================
+   PRODUCTS PAGE - DANH SÁCH SẢN PHẨM
+========================================== */
+
+.products-page {
+    padding: 40px 0 80px;
+    background: #f8f9fa;
+}
+
+.products-page .container {
+    max-width: 1300px;
+}
+
+.products-page h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #222;
+    font-weight: 700;
+}
+
+/* Thanh filter & sort */
+.products-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 2.5rem;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 0 15px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #444;
+    white-space: nowrap;
+}
+
+.filter-group select {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    min-width: 180px;
+    transition: border-color 0.3s;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+}
+
+/* Grid sản phẩm */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 15px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    padding: 20px;
+    background: #f9f9f9;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin: 12px 18px 8px;
+    color: #222;
+    line-height: 1.4;
+    height: 3.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.product-card .price {
+    color: #e63946;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 18px 12px;
+}
+
+.product-card .add-to-cart {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 18px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.product-card .add-to-cart:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.product-card .view-detail {
+    display: block;
+    text-align: center;
+    margin: 0 18px 20px;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.product-card .view-detail:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Không có sản phẩm */
+.no-products {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #777;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .products-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-group select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .products-page h1 {
+        font-size: 2rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .product-card img {
+        height: 260px;
+    }
+}
+body {
+    font-family: 'Be Vietnam Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;  /* Tăng nhẹ để dấu không dính sát */
+    -webkit-font-smoothing: antialiased;  /* Làm chữ mượt hơn trên Chrome */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;   /* Giúp dấu tiếng Việt đẹp hơn */
+    /* ... giữ nguyên các thuộc tính khác */
+}
+/* Search group */
+.search-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-group input {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+}
+
+.search-group input::placeholder {
+    color: #aaa;
+}
+
+/* Responsive: trên mobile, search ở trên cùng */
+@media (max-width: 992px) {
+    .products-controls {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    
+    .search-group {
+        order: -1; /* Đưa search lên đầu */
+    }
+}

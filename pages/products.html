@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - DemoWeb</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">    
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/product.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../assets/images/logo.png/logo.jpg" alt="DemoWeb Logo" class="logo-img">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="products.html" class="active">Sản phẩm</a></li>
+                <li><a href="cart.html">Giỏ hàng</a></li>
+                <li><a href="login.html">Đăng nhập</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="products-page">
+        <div class="container">
+            <h1>Danh sách sản phẩm</h1>
+
+    <div class="products-controls">
+    <div class="filter-group search-group">
+        <label for="searchInput">Tìm kiếm:</label>
+        <input type="text" id="searchInput" placeholder="Nhập tên sản phẩm..." autocomplete="off">
+    </div>
+
+    <div class="filter-group">
+        <label for="categoryFilter">Danh mục:</label>
+        <select id="categoryFilter">
+            <option value="all">Tất cả danh mục</option>
+            <option value="ao">Áo</option>
+            <option value="quan">Quần</option>
+            <option value="giay">Giày</option>
+            <option value="phukien">Phụ kiện</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="sortSelect">Sắp xếp theo:</label>
+        <select id="sortSelect">
+            <option value="default">Mặc định</option>
+            <option value="price-asc">Giá: Thấp → Cao</option>
+            <option value="price-desc">Giá: Cao → Thấp</option>
+            <option value="name-asc">Tên: A → Z</option>
+            <option value="name-desc">Tên: Z → A</option>
+        </select>
+    </div>
+</div>
+
+            <!-- Grid sản phẩm -->
+            <div class="product-grid" id="productGrid">
+                <!-- Sản phẩm sẽ được render bằng JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (giống index) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DemoWeb</h3>
+                <p>Cửa hàng trực tuyến demo - xây dựng bởi Thanh Quang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: contact@demoweb.vn</p>
+                <p>Hotline: 0909 xxx xxx</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 DemoWeb. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        // Dữ liệu sản phẩm mẫu (sau này có thể fetch từ JSON hoặc API)
+        const allProducts = [
+            { id: 1, name: "Áo thun basic trắng", price: 199000, category: "ao", image: "assets/images/products/ao-thun-1.jpg" },
+            { id: 2, name: "Áo polo nam đen",     price: 299000, category: "ao", image: "assets/images/products/ao-polo-1.jpg" },
+            { id: 3, name: "Quần jeans slim xanh", price: 450000, category: "quan", image: "assets/images/products/jean-1.jpg" },
+            { id: 4, name: "Quần short kaki",      price: 250000, category: "quan", image: "assets/images/products/short-1.jpg" },
+            { id: 5, name: "Giày sneaker trắng",   price: 690000, category: "giay", image: "assets/images/products/giay-1.jpg" },
+            { id: 6, name: "Giày lười da nâu",     price: 850000, category: "giay", image: "assets/images/products/giay-2.jpg" },
+            { id: 7, name: "Mũ lưỡi trai đen",     price: 120000, category: "phukien", image: "assets/images/products/mu-1.jpg" },
+            { id: 8, name: "Dây lưng da thật",     price: 320000, category: "phukien", image: "assets/images/products/day-lung-1.jpg" },
+        ];
+
+        const productGrid = document.getElementById('productGrid');
+        const sortSelect = document.getElementById('sortSelect');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        function renderProducts(products) {
+            productGrid.innerHTML = '';
+
+            if (products.length === 0) {
+                productGrid.innerHTML = '<p class="no-products">Không tìm thấy sản phẩm nào.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">${product.price.toLocaleString('vi-VN')} ₫</p>
+                    <button class="add-to-cart" data-id="${product.id}">Thêm vào giỏ</button>
+                    <a href="products-detail.html?id=${product.id}" class="view-detail">Xem chi tiết</a>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        function filterAndSortProducts() {
+            let filtered = [...allProducts];
+
+            // Lọc theo danh mục
+            const selectedCategory = categoryFilter.value;
+            if (selectedCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === selectedCategory);
+            }
+
+            // Sắp xếp
+            const sortValue = sortSelect.value;
+            if (sortValue === 'price-asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortValue === 'price-desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortValue === 'name-asc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortValue === 'name-desc') {
+                filtered.sort((a, b) => b.name.localeCompare(a.name));
+            }
+            // default: giữ nguyên thứ tự mảng ban đầu
+
+            renderProducts(filtered);
+        }
+
+        // Khởi tạo
+        document.addEventListener('DOMContentLoaded', () => {
+            filterAndSortProducts();
+
+            sortSelect.addEventListener('change', filterAndSortProducts);
+            categoryFilter.addEventListener('change', filterAndSortProducts);
+        });
+
+        // Xử lý thêm vào giỏ (giống cart.js)
+        productGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                const id = parseInt(e.target.dataset.id);
+                // Gọi hàm addToCart từ cart.js (bạn cần implement)
+                if (typeof addToCart === 'function') {
+                    addToCart(id);
+                    alert('Đã thêm sản phẩm vào giỏ!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- pages/products-detail.html -->
+<!-- ... head giống index, link css ... -->
+<body>
+  <!-- Navbar giống index -->
+
+  <section class="product-detail">
+    <div class="detail-container" id="product-detail">
+      <!-- Render bằng JS -->
+    </div>
+  </section>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/product.js"></script>
+  <script src="../js/cart.js"></script>
+
+  <script>
+    // Load chi tiết theo ?id=
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    const product = products.find(p => p.id === id);
+
+    if (product) {
+      document.getElementById('product-detail').innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="info">
+          <h1>${product.name}</h1>
+          <p class="price">${product.price.toLocaleString('vi-VN')} ₫</p>
+          <p>${product.desc}</p>
+          <button class="btn-add" data-id="${product.id}">Thêm vào giỏ</button>
+        </div>
+      `;
+    } else {
+      document.getElementById('product-detail').innerHTML = '<h2>Sản phẩm không tồn tại</h2>';
+    }
+  </script>
+</body>
